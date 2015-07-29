@@ -4,9 +4,9 @@ package com.tomek.ujebse;
  * Created by tomek on 26.07.15.
  */
 
-import android.content.Intent;
+
 import android.content.res.Configuration;
-import android.support.v4.app.Fragment;
+
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -17,7 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 
 public class MyActivity extends ActionBarActivity {
@@ -38,7 +37,7 @@ public class MyActivity extends ActionBarActivity {
         setContentView(R.layout.activity_my);
         nitView();
         if (toolbar != null) {
-            toolbar.setTitle("Ujeb se linka");
+            toolbar.setTitle("Skróć linka");
             setSupportActionBar(toolbar);
         }
         initDrawer();
@@ -93,23 +92,6 @@ public class MyActivity extends ActionBarActivity {
         drawerToggle.onConfigurationChanged(newConfig);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.my, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        if (drawerToggle.onOptionsItemSelected(item)) {
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     public void replaceFragment(int position) {
         if (position == 0) {

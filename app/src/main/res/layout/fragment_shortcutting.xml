@@ -12,6 +12,7 @@
     <!-- TODO: Update blank fragment layout -->
 
     <EditText
+        android:id="@+id/inputLine"
         android:layout_width="274dp"
         android:layout_height="wrap_content"
         android:hint="Wpisz tu link który chcesz skrócić"
@@ -29,11 +30,13 @@
         android:src="@drawable/arrow_down" />
 
     <EditText
+        android:id="@+id/outputLine"
         android:layout_width="227dp"
         android:layout_height="wrap_content"
         android:singleLine="true" />
 
     <Button
+        android:id="@+id/shortcuttingButton"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginTop="50dp"
