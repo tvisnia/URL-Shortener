@@ -7,6 +7,7 @@ package com.tomek.ujebse;
 
 import android.content.res.Configuration;
 
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -42,7 +43,7 @@ public class MyActivity extends ActionBarActivity {
         }
         initDrawer();
         shortcuttingFragment = new ShortcuttingFragment();
-        historyFragment = new HistoryFragment();
+        historyFragment =new HistoryFragment();
         replaceFragment(0);
     }
 
