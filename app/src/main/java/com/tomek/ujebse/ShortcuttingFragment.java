@@ -56,7 +56,8 @@ public class ShortcuttingFragment extends Fragment {
                 restClient.getConnectionInterface().getLink(ORIGINAL_LINK, new Callback<String>() {
                     @Override
                     public void success(String s, Response response) {
-
+                        Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
+                        Log.d("success! :", s);
                     }
 
                     @Override
