@@ -29,20 +29,18 @@ public class ShortcuttingFragment extends Fragment {
 
     public static final String LOG_TAG = "Shortcutting Fragment: ";
     public static final String ERROR_MESSAGE = "Wystąpił błąd";
-    private static String ORIGINAL_LINK;
-    private static String SHORTCUT_LINK;
+    private static String originalLink;
+    private static String shortcutLink;
     private Button button;
     private EditText inputLine;
     private EditText outputLine;
 
     private ProgressDialog progress;
-    
+
 
     public ShortcuttingFragment() {
         // Required empty public constructor
     }
-
-
 
 
     @Override
@@ -57,24 +55,21 @@ public class ShortcuttingFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ORIGINAL_LINK = String.valueOf(inputLine.getText());
+                originalLink = String.valueOf(inputLine.getText());
 
                 RestClient restClient = new RestClient();
                 progress = ProgressDialog.show(getActivity(), "Ujebywanie...", "Proszę czekać...");
-                restClient.getConnectionInterface().getLink(ORIGINAL_LINK, new Callback<String>() {
+                restClient.getConnectionInterface().getLink(originalLink, new Callback<String>() {
                     @Override
                     public void success(String s, Response response) {
                         progress.dismiss();
                         Log.d("success! :", s);
                         if (s.startsWith("Error")) {
-                            Toast toast = Toast.
-                                    makeText(getActivity().getApplicationContext(), s, Toast.LENGTH_SHORT);
-                            toast.show();
-                        }
-                        else {
-                            SHORTCUT_LINK = s;
+                            Utils.makeShortToast(getActivity(), s);
+                        } else {
+                            shortcutLink = s;
                             outputLine.setText(s);
-                            Links linksDB = new Links(ORIGINAL_LINK, SHORTCUT_LINK);
+                            Links linksDB = new Links(originalLink, shortcutLink);
                             linksDB.save();
                         }
                     }
@@ -82,13 +77,10 @@ public class ShortcuttingFragment extends Fragment {
                     @Override
                     public void failure(RetrofitError retrofitError) {
                         progress.dismiss();
-                        Toast toast = Toast.
-                                makeText(getActivity().getApplicationContext(), ERROR_MESSAGE, Toast.LENGTH_SHORT);
-                        toast.show();
+                        Utils.makeLongToast(getActivity(), ERROR_MESSAGE);
                         Log.e(LOG_TAG, retrofitError.getMessage());
                     }
                 });
-
             }
         });
         return view;
