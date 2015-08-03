@@ -65,7 +65,7 @@ public class ShortcuttingFragment extends Fragment {
                         progress.dismiss();
                         Log.d("success! :", s);
                         if (s.startsWith("Error")) {
-                            Utils.makeShortToast(getActivity(), s);
+                            failure(null);
                         } else {
                             shortcutLink = s;
                             outputLine.setText(s);
@@ -78,7 +78,6 @@ public class ShortcuttingFragment extends Fragment {
                     public void failure(RetrofitError retrofitError) {
                         progress.dismiss();
                         Utils.makeLongToast(getActivity(), ERROR_MESSAGE);
-                        Log.e(LOG_TAG, retrofitError.getMessage());
                     }
                 });
             }
