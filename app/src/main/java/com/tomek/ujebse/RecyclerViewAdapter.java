@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by tomek on 03.08.15.
  */
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     private List<Links> linksList = Links.listAll(Links.class);
 
     @Override
@@ -42,10 +42,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             originalLink = (TextView) itemView.findViewById(R.id.originalLink);
             shortcutLink = (TextView) itemView.findViewById(R.id.shortcutLink);
         }
+
         public void bind(Links links) {
             originalLink.setText(links.original);
             shortcutLink.setText(links.shortcut);
         }
+    }
 
+    public int deleteAllLinks() {
+        int deletedCount = getItemCount();
+        Links.deleteAll(Links.class);
+        return deletedCount;
     }
 }
